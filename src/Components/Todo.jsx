@@ -5,6 +5,7 @@ import { FaEdit } from "react-icons/fa";
 import { useState } from "react";
 import { MdOutlineCancel } from "react-icons/md";
 import { GiConfirmed } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 const Todo = ({ todoItem }) => {
   const dispatch = useDispatch();
@@ -47,14 +48,20 @@ const Todo = ({ todoItem }) => {
           <div>{todoItem.task}</div>
         )}
 
-        <div>{todoItem.completed ? "Completed" : "Not yet"}</div>
+        <div>{todoItem.completed ? "Completed " : "Not yet"}</div>
         <div className="d-flex gap-2 p-3 w-50">
           <RiDeleteBin2Line
             onClick={handleDelete}
             className="text-danger cursor-pointer"
           />
           <FaEdit onClick={() => setEdited(!edited)} className="text-primary cursor-pointer" />
+         
         </div>
+        <Link to={`/todo/${todoItem.id}`}>
+            <button type="button" className="btn btn-secondary">
+              Check details
+            </button>
+          </Link>
       </div>
     </div>
   );
